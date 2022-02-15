@@ -1,0 +1,588 @@
+// Master SCSS file, including all other files, and also responsible for handling
+// rules related to styling most "working" elements on this page, like various
+// divs, spans, ...
+//
+// If in doubt, add changes here.
+
+@charset "utf-8";
+
+@import "normalize";
+@import "html";
+@import "page";
+@import "tabs";
+@import "visuals";
+@import "prism-day";
+@import "prism-night";
+
+// Main logo
+img#logo {
+    position: relative;
+    top: 40px;
+}
+
+
+// "Rust Language Cheat Sheet"
+pagetitle {
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    display: block;
+}
+
+// Mostly the date
+subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    display: block;
+
+    span {
+        cursor: pointer;
+    }
+}
+
+// The small JavaScript helper buttons
+page-controls {
+    display: block;
+    font-size: 9px;
+    // text-align: right;
+
+    a {
+        margin-right: 15px;
+    }
+}
+
+flip {
+    display: inline-block;
+    transform: scale(1, -1);
+    background-color: yellow;
+}
+
+
+symbol-legend {
+    display: block;
+}
+
+symbol-legend.long {
+    display: none;
+}
+
+symbol-legend.short {
+    // display: none;
+}
+
+legend-symbol {
+    display: inline-block;
+    width: 50px;
+}
+
+// The big table of content
+toc {
+    display: flex;
+    margin-top: 40px;
+    display: block;
+
+    // Each column
+    column {
+        vertical-align: top;
+        width: 49%;
+        // flex: 50%;
+        display: inline-block;
+    }
+}
+
+twocolumn {
+    display: flex;
+    display: block;
+
+    column {
+        vertical-align: top;
+        width: 49%;
+        // flex: 50%;
+        display: inline-block;
+    }
+}
+
+
+// The feedback section
+feedback {
+    float: right;
+    position: relative;
+    display: none;
+
+    button-row {
+        float: right;
+
+        feedback-button {
+            text-align: right;
+            position: relative;
+            opacity: 0.4;
+        }
+
+        feedback-feedback {
+            visibility: hidden;
+            position: absolute;
+            // background-color: red;
+            top: -0.5em;
+            left: 0.7em;
+            opacity: 0.5;
+            transition: top 0.5s, opacity 0.3s;
+        }
+
+        feedback-button:hover {
+            opacity: 1.0;
+        }
+    }
+
+
+    feedback-form {
+        position: absolute;
+        display: none;
+        z-index: 1000;
+        width: 200px;
+        height: 120px;
+        top: 1.5em;
+        right: 0px;
+
+        background-color: #fafafa;
+
+        border-style: solid;
+        border-color: #aaa;
+        border-radius: 3px;
+        border-width: 1px;
+
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 2px;
+        padding-right: 2px;
+
+
+        hint {
+            font-size: 8px;
+            padding-left: 3px;
+            color: gray;
+            display: block;
+            opacity: 0.5;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            height: 70px;
+            width: 100%;
+
+            margin: 0px;
+
+            border-color: #eee;
+            border-style: solid;
+
+            font-size: 13px;
+            font-family: "Open Sans", sans-serif;
+
+            resize: none;
+        }
+
+        textarea:focus::placeholder {
+            color: transparent;
+        }
+
+        controls {
+            result {
+                margin-right: 40px;
+                position: relative;
+                float: left;
+                left: 0px;
+                opacity: 1.0;
+                transition: left 0.5s, opacity 0.5s;
+            }
+            // a {}
+            display: block;
+            height: 15px;
+            width: 100%;
+
+            padding-right: 2px;
+
+            font-size: 12px;
+            text-align: right;
+        }
+    }
+}
+
+feedback-button:hover {
+    cursor: pointer;
+}
+
+// The target "url" anchors as part of headings
+sup.target {
+    top: -10px;
+    left: 3px;
+    font-size: 40%;
+    display: none;
+}
+
+// Looks ugly otherwise
+h4#textual-types-ref sup.target { font-size: 60%; top: -6px; }
+h4#numeric-types-ref sup.target { font-size: 60%; top: -6px; }
+
+// Various CSS tricks for hover effects
+h1:hover sup.target { display: inline; }
+h2:hover sup.target { display: inline; }
+h3:hover sup.target { display: inline; }
+h4:hover sup.target { display: inline; }
+
+h1:hover feedback { display: inline; }
+h2:hover feedback { display: inline; }
+h3:hover feedback { display: inline; }
+h4:hover feedback { display: inline; }
+
+
+
+// Smaller text below some areas
+footnotes {
+    margin-top: 5px;
+    font-size: 80%;
+    display: block;
+}
+
+
+
+
+//
+// RANDOM HEADER COLORS GO HERE
+//
+
+.night-mode .color-header th {
+    color: black;
+}
+
+.color-header.std-green {
+    th {
+        background-color: rgb(212, 247, 244);
+    }
+}
+
+.color-header.red  {
+    th {
+        background-color: rgb(235, 156, 162);
+        border-color: rgb(200, 126, 140);
+    }
+}
+
+.color-header.blue {
+    th {
+        background-color: rgb(128, 186, 209);
+        border-color: rgb(98, 146, 180);
+    }
+}
+
+.color-header.green {
+    th {
+        background-color: rgb(164, 206, 164);
+        border-color: rgb(140, 180, 130);
+    }
+}
+
+.color-header.orange {
+    th {
+        background-color: rgb(241, 206, 159);
+        border-color: rgb(220, 180, 120);
+    }
+}
+
+.color-header.magenta {
+    th {
+        background-color: rgb(216, 162, 226);
+    }
+}
+
+.color-header.lemongrass {
+    th {
+        background-color: rgb(211, 231, 157);
+    }
+}
+
+.color-header.undefined-color-3 {
+    th {
+        background-color: rgb(157, 231, 203);
+        border-color: rgb(120, 210, 180);
+    }
+}
+
+.color-header.lobstercrabs {
+    th {
+        background-color: rgb(231, 164, 147);
+    }
+}
+
+.color-header.lavender {
+    th {
+        background-color: rgb(175, 161, 212);
+        border-color: rgb(144, 140, 190);
+    }
+}
+
+.color-header.tooling {
+    th {
+        background-color: rgb(161, 212, 197);
+        border-color: rgb(134, 202, 151);
+    }
+}
+
+.color-header.cross-compilation {
+    th {
+        background-color: rgb(168, 212, 131);
+    }
+}
+
+.color-header.one-liners {
+    th {
+        background-color: rgb(194, 212, 131);
+        border-color: rgb(174, 202, 111);
+    }
+}
+
+.color-header.sized {
+    th {
+        background-color: rgb(171, 204, 223);
+        border-color: rgb(151, 197, 200);
+    }
+}
+
+.color-header.abstract-machine {
+    th {
+        background-color: rgb(171, 214, 203);
+        border-color: rgb(151, 200, 180);
+    }
+}
+
+.color-header.std-traits {
+    th {
+        background-color: rgb(233, 235, 204);
+    }
+
+    th:nth-child(1) {
+        width: 130px;
+    }
+}
+
+.color-header.language-sugar {
+    th {
+        background-color: rgb(210, 240, 214);
+        border-color: rgb(200, 190, 230);
+    }
+}
+
+
+.color-header.api-stability {
+    th {
+        background-color: rgb(221, 213, 179);
+        border-color: rgb(200, 190, 150);
+    }
+}
+
+.color-header.number {
+    th {
+        background-color: rgb(239, 248, 171);
+        border-color: rgb(210, 220, 150);
+    }
+}
+
+.color-header.special_example {
+    th {
+        background-color: rgb(241, 233, 224);
+        border-color: rgb(221, 213, 204);
+    }
+}
+
+.color-header.quality_crate {
+    th {
+        background-color: rgb(241, 233, 224);
+    }
+}
+
+.color-header.variance {
+    th {
+        background-color: rgb(214, 151, 176);
+        border-color: rgb(200, 134, 150);
+    }
+}
+
+
+.stringconversion {
+    th {
+        background-color: rgb(175, 161, 212);
+        border-color: rgb(150, 143, 200);
+    }
+
+    th:nth-child(1) {
+        width: 250px;
+    }
+}
+
+
+.stringconversion-other {
+    th {
+        background-color: rgb(195, 201, 222);
+    }
+}
+
+
+
+//
+// MISC SPECIAL HANDLING
+//
+
+
+table.sendsync {
+    th {
+        background-color: rgb(212, 247, 244);
+        border-bottom: rgb(200, 220, 220) 1px solid !important;
+
+        // In some places we don't want our Rust-like color scheme b/c we have conflicting
+        // background colors.
+        .token.class-name, .token.keyword {
+            color: black;
+        }
+
+    }
+
+    td:nth-child(1) {
+        background-color: rgb(212, 247, 244);
+        text-align: left;
+        font-weight: bold;
+        color: black;
+
+        // In some places we don't want our Rust-like color scheme b/c we have conflicting
+        // background colors.
+        .token.class-name, .token.keyword {
+            color: black;
+        }
+    }
+
+    th:nth-child(1) {
+        width: 130px;
+    }
+
+    th:nth-child(2) {
+        width: 300px;
+    }
+
+    th:nth-child(3) {
+        width: 300px;
+    }
+}
+
+.day-mode table.sendsync {
+    color: black;
+
+    th {
+        color: black;
+    }
+}
+
+.night-mode table.sendsync {
+    color: white;
+
+    th {
+        color: black;
+    }
+}
+
+
+.day-mode {
+    blockquote.legend .expander {
+        opacity: 0.5;
+    }
+
+    span.good {
+        color: green;
+    }
+
+    span.bad {
+        color: darkred;
+    }
+
+    span.cargo-prefix {
+        border: 1px solid rgb(200, 200, 200);
+    }
+
+    sup {
+        font-size: 65%;
+    }
+
+    sup.entry {
+        color: rgb(0, 110, 0);
+    }
+
+    sup.mid {
+        color: rgb(143, 93, 1);
+    }
+
+    sup.expert {
+        color: rgb(184, 0, 0);
+    }
+}
+
+.night-mode {
+    blockquote.legend .expander {
+        opacity: 1.0;
+    }
+
+    span.good {
+        color: lightgreen;
+    }
+
+    span.bad {
+        color: red;
+    }
+
+    span.cargo-prefix {
+        border: 1px solid rgb(200, 200, 200);
+    }
+
+    sup {
+        font-size: 65%;
+    }
+
+    sup.entry {
+        color: rgb(8, 206, 8);
+    }
+
+    sup.mid {
+        color: rgb(189, 130, 21);
+    }
+
+    sup.expert {
+        color: rgb(207, 27, 27);
+    }
+}
+
+
+//
+// MISC SPECIAL ELEMENT MODIFIERS GO HERE
+//
+
+
+// In his house at R'lyeh, dead Cthulhu waits dreaming.
+magic {
+    display: block;
+    background-image: url(magic.png);
+    padding: 5px;
+    background-size: 150px;
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+
+
+// Hack we need for highlighting the bytes in the `Textual Types` section
+.force-code-color.same-black code[class*="language-rust"], .force-code-color.same-black pre[class*="language-rust"], .force-code-color.same-black span[class*="token number"] { color: #555; }
+.force-code-color.same-red code[class*="language-rust"], .force-code-color.same-red pre[class*="language-rust"], .force-code-color.same-red span[class*="token number"] { color: red; }
+
+
+div#helloctrl {
+    text-align: right;
+}
+
+div#helloinfo {
+    float: left;
+    font-size: 9px;
+    display: none;
+}

@@ -1,0 +1,13 @@
+Dockerfile linguist-detectable=false
+*.scss linguist-detectable=false
+*.html linguist-detectable=false
+*.md linguist-detectable=false
+*.css linguist-detectable=false
+*.js linguist-detectable=false
+*.sh linguist-detectable=false
+*.pdf filter=lfs diff=lfs merge=lfs -text
+*.eot filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.woff filter=lfs diff=lfs merge=lfs -text
+*.woff2 filter=lfs diff=lfs merge=lfs -text

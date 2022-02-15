@@ -1,0 +1,266 @@
+// Rules that define the PAGE in its ENTIRETY, esp. on mobile vs. non-mobile and
+// print view.
+
+$smallscreen-width: 650px;
+$largescreen-width: 1050px;
+
+
+@mixin min-screen($min-width: $body-width) {
+    @media screen and (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin max-screen($max-width: $body-width) {
+    @media screen and (max-width: $max-width) {
+        @content;
+    }
+}
+
+.page {
+    // position: absolute;
+    // width: 100%;
+    // height: 100%; // overflow-y: auto;
+    padding-bottom: 20px;
+
+    &__content {
+        a {
+            color: #4183c4;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        hr {
+            height: 1px;
+            padding: 0;
+            margin: 0.4em 0 2.4em 0;
+            overflow: hidden;
+            background-color: #e7e7e7;
+            border: none;
+        }
+        pre {
+            padding: 1rem;
+            font-size: 14px;
+            span {
+                white-space: pre-wrap;
+            }
+        }
+        blockquote {
+            margin: 0;
+            margin-bottom: .85em;
+            padding: 10px 10px 1px 10px;
+	    	border-radius: 3px;
+        }
+        code {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            color: #6e6b5e;
+            background: #f1f1f1;
+            // font-size: 12px;
+            // font-weight: 400;
+            font-family: "Fira Code", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
+            font-size: 80%;
+        }
+        iframe {
+            border: 0;
+        }
+        table {
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            border-color: #cccccc;
+            thead {
+                th {
+                    font-weight: bold;
+                    border-bottom: #bababa 1px solid;
+                }
+                td {
+                    font-weight: 700;
+                    border: none;
+                }
+            }
+            td {
+                padding: 3px 5px 3px 20px;
+            }
+        }
+        font-size: 1.6rem;
+        word-wrap: break-word;
+        line-height: 1.5;
+        position: relative;
+        left: 0;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 15px 40px;
+        p {
+            margin-top: 0;
+            margin-bottom: 0.85em;
+        }
+    }
+
+    .day-mode &__content {
+        color: #333;
+
+        blockquote {
+            background-color: #e1f3ff; // border-left: 4px solid #e5e5e5;
+            border: #d1e3ef solid 1px;
+        }
+
+        table {
+            thead {
+                background: hsl(0, 0%, 80%);
+
+            }
+            tbody {
+                tr:nth-child(2n) {
+                    background: hsl(0, 0%, 97%);
+                }
+            }
+        }
+    }
+
+    .night-mode &__content {
+        color: #ccc;
+
+        blockquote {
+            background-color: #00243b; // border-left: 4px solid #e5e5e5;
+            border: #00344b solid 1px;
+        }
+
+        table {
+            thead {
+                background: hsl(0, 0%, 20%);
+            }
+            tbody {
+                tr:nth-child(2n) {
+                    background: hsl(0, 0%, 18%);
+                }
+            }
+        }
+    }
+}
+
+
+// Attached to `body` to enable night mode, inspiration from
+// https://lnikki.la/articles/night-mode-css-filter/
+// .night-mode {
+//     background-color: black;
+//     filter: invert(1) hue-rotate(180deg);
+// }
+
+
+@include max-screen(600px) {
+    .page {
+        width: 100%;
+        left: 0;
+    }
+
+    .hide_on_small {
+        display: none;
+    }
+}
+
+// Small screens like phones.
+@media screen and (max-width: $smallscreen-width) {
+    html {
+        font-size: 7px;
+    }
+
+    .cheats>table tr td:nth-child(1) {
+        width: 150px;
+    }
+}
+
+
+// Technically this is the 'default', but due to the scaling below this effectively is
+// now a transition zone where we can squeeze a bit more out.
+@media screen and (min-width: $smallscreen-width) and (max-width: $largescreen-width) {
+    html {
+        font-size: 9px;
+    }
+
+    fixed-2-column > table tr td:nth-child(1) {
+        width: 235px;
+    }
+
+    fixed-3-column > table tr td:nth-child(1) {
+        width: 235px;
+    }
+
+    fixed-2-column.extra-wide > table tr td:nth-child(1) {
+        width: 300px;
+    }
+
+    fixed-3-column.extra-wide > table tr td:nth-child(1) {
+        width: 300px;
+    }
+
+    fixed-3-column > table tr td:nth-child(2) {
+        text-align: left;
+        width: 40px;
+        padding-left: 5px;
+    }
+
+}
+
+
+// On larger screens we scale the content a bit, since changing font size would make lot of entries
+// line break, which is ugly. Reason we zoom in general is because of user complaints about font size,
+// readability, compare #39.
+@media screen and (min-width: $largescreen-width) {
+    html {
+        font-size: 9px;
+    }
+
+    .book-content {
+        // background-color: red;
+        transition: 0s;
+        transform: scale(1.05);
+        transform-origin: top left;
+    }
+
+    fixed-2-column > table tr td:nth-child(1) {
+        width: 235px;
+    }
+
+    fixed-3-column > table tr td:nth-child(1) {
+        width: 235px;
+    }
+
+    fixed-2-column.extra-wide > table tr td:nth-child(1) {
+        width: 300px;
+    }
+
+    fixed-3-column.extra-wide > table tr td:nth-child(1) {
+        width: 300px;
+    }
+
+    fixed-3-column > table tr td:nth-child(2) {
+        text-align: left;
+        width: 40px;
+        padding-left: 5px;
+    }
+}
+
+
+// When printing we hide some elements that don't make sense
+@media print {
+
+    html {
+        font-size: 7px;
+    }
+
+    noprint {
+        display: none;
+    }
+
+    .target {
+        display: none;
+    }
+
+    feedback {
+        display: none;
+    }
+}
